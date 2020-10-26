@@ -1,0 +1,47 @@
+const <%= props.name %>Service = require('../services/<%= props.name %>Service');
+
+module.exports = {
+
+    async index(request, response) {
+        const <%= props.pluralName %> = await <%= props.name %>Service.index();
+        return response.json(<%= props.pluralName %>);
+    },
+
+    async store(request, response) {
+        const data = request.body;
+        const <%= props.singularName %> = await <%= props.name %>Service.store(data);
+        return response.json(<%= props.singularName %>);
+    },
+
+    async show(request, response) {
+        const { id } = request.params;
+        const <%= props.singularName %> = await <%= props.name %>Service.show(id);
+
+        if (<%= props.singularName %> == null) {
+            return response.status(404).json();
+        }
+
+        return response.json(<%= props.singularName %>);
+    },
+
+    async update(request, response) {
+        const { id } = request.params;
+        const data = request.body;
+
+        const <%= props.singularName %> = await <%= props.name %>Service.update(id, data);
+        if (<%= props.singularName %> == null)
+            return response.status(404).json();
+
+        return response.json(<%= props.singularName %>);
+    },
+
+    async destroy(request, response) {
+        const { id } = request.params;
+        const <%= props.singularName %> = await <%= props.name %>Service.destroy(id);
+
+        if (<%= props.singularName %> == null)
+            return response.status(404).json();
+
+        return response.status(200).json();
+    },
+};

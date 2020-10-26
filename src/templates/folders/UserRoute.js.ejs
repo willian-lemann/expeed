@@ -1,0 +1,14 @@
+const { Router } = require('express');
+
+
+const UserController = require('../UserController');
+
+const UserRoute = Router();
+
+UserRoute.get('/users', UserController.index);
+UserRoute.get('/users/:id', UserController.show);
+UserRoute.post('/users', UserController.store);
+UserRoute.put('/users/:id', UserController.update);
+UserRoute.delete('/users/:id', UserController.destroy);
+
+module.exports = UserRoute;

@@ -1,0 +1,13 @@
+const { Router } = require('express');
+ 
+const <%=props.name %>Controller = require('../src/controllers/<%= props.name %>Controller');
+
+const <%= props.name %>Route = Router();
+
+<%= props.name %>Route.get('/<%= props.name %>', <%= props.name %>Controller.index);
+<%= props.name %>Route.get('/<%= props.name %>/:id', <%= props.name %>Controller.show);
+<%= props.name %>Route.post('/<%= props.name %>', <%= props.name %>Controller.store);
+<%= props.name %>Route.put('/<%= props.name %>/:id', <%= props.name %>Controller.update);
+<%= props.name %>Route.delete('/<%= props.name %>/:id', <%= props.name %>Controller.destroy);
+
+module.exports = <%= props.name %>Route;

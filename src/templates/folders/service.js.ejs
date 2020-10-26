@@ -1,0 +1,44 @@
+const <%= props.name %> = require('../models/<%= props.name %>');
+
+exports.index = async (request, response) => {
+    return await <%= props.name %>.find();
+};
+
+exports.store = async (data) => {
+    const <%= props.singularName %> = await <%= props.name %>.create(data);
+    return <%= props.singularName %>;
+};
+
+exports.show = async (id) => {
+    const <%= props.singularName %> = await <%= props.name %>.findById(id);
+
+    if (<%= props.singularName %> == null)
+        return null;
+
+    return <%= props.singularName %>;
+};
+
+exports.update = async (id, data) => {
+
+    const <%= props.singularName %> = await <%= props.name %>.findById(id);
+
+    if (<%= props.singularName %> == null)
+        return null;
+
+    const new<%= props.name %> = await <%= props.singularName %>.updateOne(data, (err) => {
+        if (err)
+            return { Error: err };
+    });
+
+    return new<%= props.name %>;
+};
+
+exports.destroy = async (id) => {
+
+    const <%= props.singularName %> = await <%= props.name %>.findById(id);
+
+    if (<%= props.singularName %> == null)
+        return null;
+
+        <%= props.singularName %>.remove();
+};
